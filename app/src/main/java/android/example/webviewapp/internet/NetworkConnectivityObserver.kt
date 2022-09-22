@@ -12,7 +12,6 @@ import kotlinx.coroutines.launch
 class NetworkConnectivityObserver (
     context: Context
     ): ConnectivityObserver {
-
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE)
             as ConnectivityManager
 

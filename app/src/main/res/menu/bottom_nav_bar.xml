@@ -3,13 +3,13 @@
 
     <item
         android:id="@+id/startFragment"
-        android:title="start" />
+        android:title="@string/btm_nav_start" />
 
     <item
         android:id="@+id/webViewFragment"
-        android:title="WebView" />
+        android:title="@string/btm_nav_webview" />
 
     <item
         android:id="@+id/noInternetFragment"
-        android:title="NoInternet" />
+        android:title="@string/btm_nav_no_internet" />
 </menu>

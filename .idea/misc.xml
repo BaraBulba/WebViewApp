@@ -7,8 +7,8 @@
         <entry key="..\:/WebViewApp/app/src/main/res/drawable/ic_start_fragment.xml" value="0.2585" />
         <entry key="..\:/WebViewApp/app/src/main/res/drawable/ic_web_view.xml" value="0.2585" />
         <entry key="..\:/WebViewApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/WebViewApp/app/src/main/res/layout/fragment_no_internet.xml" value="0.35260416666666666" />
-        <entry key="..\:/WebViewApp/app/src/main/res/layout/fragment_start.xml" value="0.36666666666666664" />
+        <entry key="..\:/WebViewApp/app/src/main/res/layout/fragment_no_internet.xml" value="0.1" />
+        <entry key="..\:/WebViewApp/app/src/main/res/layout/fragment_start.xml" value="0.1" />
         <entry key="..\:/WebViewApp/app/src/main/res/layout/fragment_web_view.xml" value="0.35260416666666666" />
         <entry key="..\:/WebViewApp/app/src/main/res/menu/bottom_nav_bar.xml" value="0.22" />
         <entry key="..\:/WebViewApp/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.36666666666666664" />

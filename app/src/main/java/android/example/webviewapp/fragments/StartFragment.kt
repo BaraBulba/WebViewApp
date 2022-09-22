@@ -2,11 +2,11 @@ package android.example.webviewapp.fragments
 
 import android.content.Context
 import android.example.webviewapp.Constants.KEY_NAME
+import android.example.webviewapp.Constants.SHARED_PREFS_NAME
 import android.example.webviewapp.R
 import android.example.webviewapp.databinding.FragmentStartBinding
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,12 +18,20 @@ class StartFragment : Fragment(R.layout.fragment_start) {
 
     private var _binding: FragmentStartBinding? = null
     private val binding get() = _binding!!
-    private val isAgreed: Boolean = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val sharedPreferences = context?.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        if (sharedPreferences!!.getBoolean(KEY_NAME, false)){
+            if (isNetworkAvailable()){
+                navigateToWebView()
+            }
+            else if (!isNetworkAvailable()){
+                navigateToNoInternet()
+            }
+        }
         _binding = FragmentStartBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,12 +43,14 @@ class StartFragment : Fragment(R.layout.fragment_start) {
 
         if(isNetworkAvailable()){
             binding.agreeButton.setOnClickListener {
-                findNavController().navigate(R.id.action_startFragment_to_webViewFragment)
+                savingThePolicy()
+                navigateToWebView()
             }
         }
         else if (!isNetworkAvailable()){
             binding.agreeButton.setOnClickListener{
-                findNavController().navigate(R.id.action_startFragment_to_noInternetFragment)
+                savingThePolicy()
+                navigateToNoInternet()
             }
         }
         binding.disagreeButton.setOnClickListener {
@@ -48,12 +58,17 @@ class StartFragment : Fragment(R.layout.fragment_start) {
         }
 
     }
+    private fun navigateToWebView(){
+        findNavController().navigate(R.id.action_startFragment_to_webViewFragment)
+    }
+    private fun navigateToNoInternet(){
+        findNavController().navigate(R.id.action_startFragment_to_webViewFragment)
+    }
 
-    private fun savingThePolicy(state: Boolean): Boolean {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-        if (isAgreed)
-        sharedPreferences!!.edit().putBoolean(KEY_NAME, state).commit()
-        return true
+    private fun savingThePolicy(){
+        val sharedPreferences = context?.getSharedPreferences(SHARED_PREFS_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreferences?.edit()
+        editor?.putBoolean(KEY_NAME, true)?.apply()
     }
 
     private fun isNetworkAvailable(): Boolean {
